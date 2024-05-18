@@ -9,7 +9,6 @@ public class DBOperations {
         try {
             Statement stmt = conc.createStatement();
             stmt.executeUpdate(statement);
-            System.out.println("Executed successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
