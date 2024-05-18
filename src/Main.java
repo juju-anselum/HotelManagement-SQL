@@ -10,7 +10,32 @@ public class Main {
         try {
             conc = DBConnection.getConnection();
 
-            bookRoom(conc);
+            //bookRoom(conc);
+
+            //display customer details
+            ResultSet rs = new DBOperations().fetchData(conc, "customers");
+            for(int i = 1;rs.next();i++){
+                System.out.println("Customer " + i);
+                System.out.println("\tName: " + rs.getString(2));
+                System.out.println("\tAge: " + rs.getInt(3));
+                System.out.println("\tGender: " + rs.getString(4));
+                System.out.println("\tAddress: " + rs.getString(5));
+                System.out.println("\tPhone: " + rs.getString(6));
+                System.out.println("\tRoom No: " + rs.getString(7));
+                System.out.println("\tCheck-in date: " + rs.getString(8));
+                System.out.println("\tCheck-out date: " + rs.getString(9));
+            }
+
+            //display booked rooms
+            rs = new DBOperations().fetchData(conc, "reservations");
+            for(int i = 1;rs.next();i++){
+                System.out.println("Room " + i);
+                System.out.println("\tRoom No: " + rs.getString(1));
+                System.out.println("\tCustomer ID: " + rs.getString(2));
+                System.out.println("\tName: " + rs.getString(3));
+                System.out.println("\tCheck-in date: " + rs.getString(4));
+                System.out.println("\tCheck-out date: " + rs.getString(5));
+            }
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
