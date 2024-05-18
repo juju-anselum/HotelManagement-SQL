@@ -5,20 +5,11 @@ import java.sql.Statement;
 
 public class DBOperations {
 
-    public void insertData(Connection conc, String name, int age, String phone) {
+    public void executeData(Connection conc, String statement) {
         try {
             Statement stmt = conc.createStatement();
-            stmt.executeUpdate("INSERT INTO hotelBooking VALUES('" + name + "', " + age + ", '" + phone + "')");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void deleteData(Connection conc, String name) {
-        try {
-            Statement stmt = conc.createStatement();
-            stmt.executeUpdate("DELETE FROM hotelBooking WHERE name = '" + name + "'");
+            stmt.executeUpdate(statement);
+            System.out.println("Executed successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
